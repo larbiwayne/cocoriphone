@@ -1,15 +1,15 @@
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload/types';
 
-import { admins } from '../../access/admins'
-import { anyone } from '../../access/anyone'
-import adminsAndUser from './access/adminsAndUser'
-import { checkRole } from './checkRole'
-import { customerProxy } from './endpoints/customer'
-import { createStripeCustomer } from './hooks/createStripeCustomer'
-import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
-import { loginAfterCreate } from './hooks/loginAfterCreate'
-import { resolveDuplicatePurchases } from './hooks/resolveDuplicatePurchases'
-import { CustomerSelect } from './ui/CustomerSelect'
+import { admins } from '../../access/admins';
+import { anyone } from '../../access/anyone';
+import adminsAndUser from './access/adminsAndUser';
+import { checkRole } from './checkRole';
+import { customerProxy } from './endpoints/customer';
+import { createStripeCustomer } from './hooks/createStripeCustomer';
+import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin';
+import { loginAfterCreate } from './hooks/loginAfterCreate';
+import { resolveDuplicatePurchases } from './hooks/resolveDuplicatePurchases';
+import { CustomerSelect } from './ui/CustomerSelect';
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -45,6 +45,17 @@ const Users: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+    },
+    {
+      name: 'email',
+      type: 'email',
+      required: true,
+    },
+
+    {
+      name: 'profilephoto',
+      type: 'text',
+     
     },
     {
       name: 'roles',
@@ -120,25 +131,6 @@ const Users: CollectionConfig = {
             },
           ],
         },
-        // If you wanted to maintain a 'created on'
-        // or 'last modified' date for the cart
-        // you could do so here:
-        // {
-        //   name: 'createdOn',
-        //   label: 'Created On',
-        //   type: 'date',
-        //   admin: {
-        //     readOnly: true
-        //   }
-        // },
-        // {
-        //   name: 'lastModified',
-        //   label: 'Last Modified',
-        //   type: 'date',
-        //   admin: {
-        //     readOnly: true
-        //   }
-        // },
       ],
     },
     {
@@ -153,6 +145,6 @@ const Users: CollectionConfig = {
     },
   ],
   timestamps: true,
-}
+};
 
-export default Users
+export default Users;

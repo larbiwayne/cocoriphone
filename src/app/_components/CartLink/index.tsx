@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { useCart } from '../../_providers/Cart'
 
 import classes from './index.module.scss'
+import bagIcon from 'public/bag.png'
+import Image from 'next/image'
 
 export const CartLink: React.FC<{
   className?: string
@@ -21,7 +23,8 @@ export const CartLink: React.FC<{
   return (
     <Link className={[classes.cartLink, className].filter(Boolean).join(' ')} href="/cart">
       <Fragment>
-        Cart
+    
+      <Image src={bagIcon} alt="Cart" className={classes.icon} />
         {typeof length === 'number' && length > 0 && (
           <small className={classes.quantity}>({length})</small>
         )}
