@@ -16,6 +16,7 @@ const policies = {
     'data:', // Allow data URLs for images
     'https://*.stripe.com',
     'https://raw.githubusercontent.com',
+    'https://lh3.googleusercontent.com', // Added this line
   ],
   'font-src': ["'self'"],
   'frame-src': [
@@ -30,7 +31,7 @@ const policies = {
     'https://api.stripe.com',
     'https://maps.googleapis.com',
   ],
-}
+};
 
 module.exports = Object.entries(policies)
   .map(([key, value]) => {
@@ -39,4 +40,4 @@ module.exports = Object.entries(policies)
     }
     return ''
   })
-  .join('; ')
+  .join('; ');

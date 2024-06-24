@@ -26,3 +26,10 @@
   font-size: 16px;
   line-height: 14px;
 }
+.profileImageWrapper {
+  width: 50px; /* Adjust size as needed */
+  height: 50px; /* Adjust size as needed */
+  border-radius: 50%; /* Makes the wrapper circular */
+  overflow: hidden; /* Ensures the image stays within the circular boundary */
+  margin-right: 10px; /* Adds spacing between image and profile info */
+}

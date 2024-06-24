@@ -4828,6 +4828,9 @@ type Order {
 type User {
   id: String
   name: String
+  profilephoto: String
+  sub: String
+  pictureURL: String
   roles: [User_roles!]
   purchases: [Product!]
   stripeCustomerID: String
@@ -6204,6 +6207,9 @@ type Users {
 
 input User_where {
   name: User_name_operator
+  profilephoto: User_profilephoto_operator
+  sub: User_sub_operator
+  pictureURL: User_pictureURL_operator
   roles: User_roles_operator
   purchases: User_purchases_operator
   stripeCustomerID: User_stripeCustomerID_operator
@@ -6220,6 +6226,39 @@ input User_where {
 }
 
 input User_name_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_profilephoto_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_sub_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_pictureURL_operator {
   equals: String
   not_equals: String
   like: String
@@ -6345,6 +6384,9 @@ input User_id_operator {
 
 input User_where_and {
   name: User_name_operator
+  profilephoto: User_profilephoto_operator
+  sub: User_sub_operator
+  pictureURL: User_pictureURL_operator
   roles: User_roles_operator
   purchases: User_purchases_operator
   stripeCustomerID: User_stripeCustomerID_operator
@@ -6362,6 +6404,9 @@ input User_where_and {
 
 input User_where_or {
   name: User_name_operator
+  profilephoto: User_profilephoto_operator
+  sub: User_sub_operator
+  pictureURL: User_pictureURL_operator
   roles: User_roles_operator
   purchases: User_purchases_operator
   stripeCustomerID: User_stripeCustomerID_operator
@@ -6388,6 +6433,9 @@ type usersDocAccess {
 
 type UsersDocAccessFields {
   name: UsersDocAccessFields_name
+  profilephoto: UsersDocAccessFields_profilephoto
+  sub: UsersDocAccessFields_sub
+  pictureURL: UsersDocAccessFields_pictureURL
   roles: UsersDocAccessFields_roles
   purchases: UsersDocAccessFields_purchases
   stripeCustomerID: UsersDocAccessFields_stripeCustomerID
@@ -6419,6 +6467,75 @@ type UsersDocAccessFields_name_Update {
 }
 
 type UsersDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_profilephoto {
+  create: UsersDocAccessFields_profilephoto_Create
+  read: UsersDocAccessFields_profilephoto_Read
+  update: UsersDocAccessFields_profilephoto_Update
+  delete: UsersDocAccessFields_profilephoto_Delete
+}
+
+type UsersDocAccessFields_profilephoto_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_profilephoto_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_profilephoto_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_profilephoto_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_sub {
+  create: UsersDocAccessFields_sub_Create
+  read: UsersDocAccessFields_sub_Read
+  update: UsersDocAccessFields_sub_Update
+  delete: UsersDocAccessFields_sub_Delete
+}
+
+type UsersDocAccessFields_sub_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_sub_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_sub_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_sub_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_pictureURL {
+  create: UsersDocAccessFields_pictureURL_Create
+  read: UsersDocAccessFields_pictureURL_Read
+  update: UsersDocAccessFields_pictureURL_Update
+  delete: UsersDocAccessFields_pictureURL_Delete
+}
+
+type UsersDocAccessFields_pictureURL_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_pictureURL_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_pictureURL_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_pictureURL_Delete {
   permission: Boolean!
 }
 
@@ -10575,6 +10692,9 @@ type usersAccess {
 
 type UsersFields {
   name: UsersFields_name
+  profilephoto: UsersFields_profilephoto
+  sub: UsersFields_sub
+  pictureURL: UsersFields_pictureURL
   roles: UsersFields_roles
   purchases: UsersFields_purchases
   stripeCustomerID: UsersFields_stripeCustomerID
@@ -10606,6 +10726,75 @@ type UsersFields_name_Update {
 }
 
 type UsersFields_name_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_profilephoto {
+  create: UsersFields_profilephoto_Create
+  read: UsersFields_profilephoto_Read
+  update: UsersFields_profilephoto_Update
+  delete: UsersFields_profilephoto_Delete
+}
+
+type UsersFields_profilephoto_Create {
+  permission: Boolean!
+}
+
+type UsersFields_profilephoto_Read {
+  permission: Boolean!
+}
+
+type UsersFields_profilephoto_Update {
+  permission: Boolean!
+}
+
+type UsersFields_profilephoto_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_sub {
+  create: UsersFields_sub_Create
+  read: UsersFields_sub_Read
+  update: UsersFields_sub_Update
+  delete: UsersFields_sub_Delete
+}
+
+type UsersFields_sub_Create {
+  permission: Boolean!
+}
+
+type UsersFields_sub_Read {
+  permission: Boolean!
+}
+
+type UsersFields_sub_Update {
+  permission: Boolean!
+}
+
+type UsersFields_sub_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_pictureURL {
+  create: UsersFields_pictureURL_Create
+  read: UsersFields_pictureURL_Read
+  update: UsersFields_pictureURL_Update
+  delete: UsersFields_pictureURL_Delete
+}
+
+type UsersFields_pictureURL_Create {
+  permission: Boolean!
+}
+
+type UsersFields_pictureURL_Read {
+  permission: Boolean!
+}
+
+type UsersFields_pictureURL_Update {
+  permission: Boolean!
+}
+
+type UsersFields_pictureURL_Delete {
   permission: Boolean!
 }
 
@@ -12321,6 +12510,9 @@ input mutationCategoryUpdate_BreadcrumbsInput {
 
 input mutationUserInput {
   name: String
+  profilephoto: String
+  sub: String
+  pictureURL: String
   roles: [User_roles_MutationInput]
   purchases: [String]
   stripeCustomerID: String
@@ -12355,6 +12547,9 @@ input mutationUser_Cart_ItemsInput {
 
 input mutationUserUpdateInput {
   name: String
+  profilephoto: String
+  sub: String
+  pictureURL: String
   roles: [UserUpdate_roles_MutationInput]
   purchases: [String]
   stripeCustomerID: String

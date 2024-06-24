@@ -413,6 +413,9 @@ export interface Order {
 export interface User {
   id: string;
   name?: string | null;
+  profilephoto?: string | null;
+  sub?: string | null;
+  pictureURL?: string | null;
   roles?: ('admin' | 'customer')[] | null;
   purchases?: (string | Product)[] | null;
   stripeCustomerID?: string | null;
@@ -430,7 +433,6 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password: string | null;
-  profilephoto: string | null;
 }
 export interface Redirect {
   id: string;

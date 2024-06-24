@@ -58,6 +58,18 @@ const Users: CollectionConfig = {
      
     },
     {
+      name: "sub",
+  
+      type: "text",
+    
+    },
+    {
+      name: "pictureURL",
+      
+      type: "text",
+      
+    },
+    {
       name: 'roles',
       type: 'select',
       hasMany: true,

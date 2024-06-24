@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
@@ -24,12 +24,12 @@ const AccountForm: React.FC = () => {
   const { user, setUser } = useAuth();
   const [changePassword, setChangePassword] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | ArrayBuffer | null>(null);
-  const [photoName, setPhotoName] = useState<string>(''); // State to hold the photo name
+  const [photoName, setPhotoName] = useState<string>(''); // State to hold the photo URL
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading },
+    formState: { errors, isSubmitting },
     reset,
     watch,
   } = useForm<FormData>();
@@ -39,15 +39,15 @@ const AccountForm: React.FC = () => {
 
   const router = useRouter();
 
-  // Function to fetch user data, including the photo name, when the component mounts
+  // Function to fetch user data, including the photo URL, when the component mounts
   useEffect(() => {
     const fetchUserData = async () => {
       if (user) {
-        // Fetch user data including photo name
+        // Fetch user data including photo URL
         const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/${user.id}`);
         if (response.ok) {
           const userData = await response.json();
-          setPhotoName(userData.profilephoto); // Set the photo name in the state
+          setPhotoName(userData.pictureURL); // Set the photo URL in the state
         }
       }
     };
@@ -74,11 +74,12 @@ const AccountForm: React.FC = () => {
         const formData = new FormData();
         formData.append('email', data.email);
         formData.append('name', data.name);
-        formData.append('password', data.password);
-        formData.append('passwordConfirm', data.passwordConfirm);
-
+        if (data.password) {
+          formData.append('password', data.password);
+          formData.append('passwordConfirm', data.passwordConfirm);
+        }
         if (data.profilephoto && data.profilephoto.length > 0) {
-          formData.append('profilephoto', data.profilephoto[0].name);
+          formData.append('profilephoto', data.profilephoto[0]);
         }
 
         const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/${user.id}`, {
@@ -136,22 +137,8 @@ const AccountForm: React.FC = () => {
         <Fragment>
           <Input name="email" label="Email Address" required register={register} error={errors.email} type="email" />
           <Input name="name" label="Name" register={register} error={errors.name} />
-          <input
-            type="file"
-            accept="image/*"
-            {...register('profilephoto')}
-            onChange={handleImageUpload}
-          />
-          {selectedImage && (
-            <img
-              src={selectedImage as string}
-              alt="Profile"
-              style={{ marginTop: '20px', maxWidth: '100%', height: 'auto' }}
-            />
-          )}
-          {photoName && (
-            <img src={photoName} alt="Profile" /> // Display the photo using its URL
-          )}
+       
+      
           <p>
             {'Change your account details below, or '}
             <button
@@ -200,8 +187,8 @@ const AccountForm: React.FC = () => {
       )}
       <Button
         type="submit"
-        label={isLoading ? 'Processing' : changePassword ? 'Change Password' : 'Update Account'}
-        disabled={isLoading}
+        label={isSubmitting ? 'Processing' : changePassword ? 'Change Password' : 'Update Account'}
+        disabled={isSubmitting}
         appearance="primary"
         className={classes.submit}
       />
